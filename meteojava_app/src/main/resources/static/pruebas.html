@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+
+<body>
+    <form id="f">
+        <div class="mb-3">
+            <label id="_label" for="longitud">Longitud</label>
+            <input id="longitud" name="longitud" type="text" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label id="_label" for="latitud">Latitud</label>
+            <input id="latitud" name="latitud" type="text" class="form-control" />
+        </div>
+        <input type="button" value="Enviar">
+    </form>
+    <script>
+        datos = {"longitud": f.longitud.value, "latitud": f.latitud.value}
+        function enviar(f){
+            fetch("http://localhost:8085/test/crear", {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(respuesta => console.log(respuesta.ok? "OK" : respuesta.status));
+        }
+    </script>
+</body>
+
+</html>

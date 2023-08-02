@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{title.listado}"></title>
+</head>
+<body>
+    <table border="1">
+        <caption>LISTADO DE MEDICIONES (<a th:href="@{/mediciones/insert}">Agregar nuevo</a>)</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+                <th>Anny</th>
+                <th>Temperatura</th>
+                <th>Viento</th>
+                <th>Precipitacion</th>
+                <th>Radiacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="m: ${mediciones}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.latitud}"></td>
+                <td th:text="${m.longitud}"></td>
+                <td th:text="${m.anny}"></td>
+                <td th:text="${m.temperatura}"></td>
+                <td th:text="${m.viento}"></td>
+                <td th:text="${m.precipitacion}"></td>
+                <td th:text="${m.radiacion}"></td>
+                <td>
+                    <a th:href="@{/mediciones/update(id=${m.id})}">Editar</a>
+                    <a th:href="@{/mediciones/delete/{id}(id=${m.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
