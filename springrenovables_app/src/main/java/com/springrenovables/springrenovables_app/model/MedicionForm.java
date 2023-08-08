@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id"})
+@EqualsAndHashCode(of = { "id" })
 public class MedicionForm {
     private long id;
     private String latitud;
@@ -19,7 +19,7 @@ public class MedicionForm {
     private Short precipitacion;
     private Short radiacion;
 
-    public MedicionDTO toMedicionDTO(){
+    public MedicionDTO toMedicionDTO() {
         var m = new MedicionDTO();
         m.setId(id);
         m.setLatitud(latitud);
@@ -29,12 +29,12 @@ public class MedicionForm {
         m.setViento(viento);
         m.setPrecipitacion(precipitacion);
         m.setRadiacion(radiacion);
-        
+
         return m;
     }
 
-    public static MedicionForm from(MedicionDTO medicion){
-        if(medicion == null){
+    public static MedicionForm from(MedicionDTO medicion) {
+        if (medicion == null) {
             return null;
         }
         var m = new MedicionForm();

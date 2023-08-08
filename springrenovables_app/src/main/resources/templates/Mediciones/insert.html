@@ -11,48 +11,42 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
     <title>Agregar medición</title>
-    <style>
-       .error {
-          font-size: 0.75em;
-          color: green;
-       } 
-    </style>
 </head>
 
 <body>
-    <form method="post" th:object="${medicion}">
+    <form th:action="@{/mediciones/insert}" method="post" th:object="${medicion}">
         <div class="form-group">
             <label for="latitud" class="form-label">Latitud</label>
-            <input type="text" th:field="*{latitud}" class="form-control" required>
+            <input type="text" th:field="*{latitud}" class="form-control" required placeholder="ingresa una latitud en formato 'L1'...">
             <div th:if="${#fields.hasErrors('latitud')}" th:errors="*{latitud}" th:errorclass="error"></div>
         </div>
         <div class="form-group">
             <label for="longitud" class="form-label">Longitud</label>
-            <input type="text" th:field="*{longitud}" class="form-control">
+            <input type="text" th:field="*{longitud}" class="form-control" placeholder="ingresa una longitud en formato 'L1'...">
         </div>
         <div class="form-group">
             <label for="anny" class="form-label">Año</label>
-            <input type="number" th:field="*{anny}" class="form-control">
+            <input type="number" th:field="*{anny}" class="form-control" placeholder="debe contener 4 cifras...">
         </div>
         <div class="form-group">
             <label for="temperatura" class="form-label">Temperatura</label>
-            <input type="number" th:field="*{temperatura}" class="form-control">
+            <input type="number" th:field="*{temperatura}" class="form-control" placeholder="ingresa un numero...">
         </div>
         <div class="form-group">
             <label for="viento" class="form-label">Viento</label>
-            <input type="number" th:field="*{viento}" class="form-control">
+            <input type="number" th:field="*{viento}" class="form-control" placeholder="ingresa un numero..."> 
         </div>
         <div class="form-group">
             <label for="precipitacion" class="form-label">Precipitacion</label>
-            <input type="number" th:field="*{precipitacion}" class="form-control">
+            <input type="number" th:field="*{precipitacion}" class="form-control" placeholder="ingresa un numero...">
         </div>
         <div class="form-group">
             <label for="radiacion" class="form-label">Radiacion</label>
-            <input type="number" th:field="*{radiacion}" class="form-control">
+            <input type="number" th:field="*{radiacion}" class="form-control" placeholder="ingresa un numero...">
         </div>
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Crear</button>
-            <a class="btn btn-primary" th:href="@{/mediciones/listado}">Cancelar y regresar</a>
+            <a class="btn btn-primary" th:href="@{/mediciones/index}">Cancelar y regresar</a>
         </div>
     </form>
 </body>

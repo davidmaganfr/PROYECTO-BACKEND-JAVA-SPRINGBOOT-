@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>BUSCAR MEDICION</title>
+</head>
+<body>
+    <form th:action="@{/mediciones/find}" method="post" th:object="${medicion}">
+        <div class="form-group">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" th:field="*{id}" class="form-control" required placeholder="ingresa un numero...">
+            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" th:errorclass="error"></div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+            <a class="btn btn-primary" th:href="@{/mediciones/index}">Cancelar y regresar</a>
+        </div>
+    </form>
+</body>
+
+</html>

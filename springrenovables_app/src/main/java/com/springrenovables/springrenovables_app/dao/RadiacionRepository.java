@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springrenovables.springrenovables_app.entities.Medicion;
 
 @Repository
 public class RadiacionRepository {
@@ -50,19 +51,28 @@ public class RadiacionRepository {
         return registro == null ? null : (short) ((int) registro.get("radiacion"));
     }
 
-    public void save(String latitud, String longitud, short anny, short radiacion) {
+    public void update(String latitud, String longitud, short anny, short radiacion) {
         var result = findRegistro(latitud, longitud, anny);
         if (result == null) {
-            radiaciones.add(Map.of("latitud", latitud, "longitud", longitud, "anny", anny, "radiacion", (int) radiacion));
+            radiaciones
+                    .add(Map.of("latitud", latitud, "longitud", longitud, "anny", anny, "radiacion", (int) radiacion));
         } else {
             result.put("radiacion", (int) radiacion);
         }
         saveChanges();
-    }   
-    
-    public void delete(String latitud, String longitud, short anny){
-         Map<String, Object> registro = findRegistro(latitud, longitud, anny);
-         radiaciones.remove(registro);
-         saveChanges();
+    }
+
+    public void save(Medicion medicion, short radiacion) {
+        radiaciones.add(Map.of("latitud", medicion.getLatitud(),
+                "longitud", medicion.getLongitud(),
+                "anny", medicion.getAnny(),
+                "radiacion", radiacion));
+        saveChanges();
+    }
+
+    public void delete(String latitud, String longitud, short anny) {
+        Map<String, Object> registro = findRegistro(latitud, longitud, anny);
+        radiaciones.remove(registro);
+        saveChanges();
     }
 }

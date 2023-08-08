@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 public class Medicion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; 
+    private Long id; 
     private String latitud;
     private String longitud;
-    private short anny;
-    private short temperatura;// en grados centigrados
-    private short viento; //en metros por segundo
-    private short precipitacion; //en milimetros por hora
+    private Short anny;
+    private Short temperatura;// en grados centigrados
+    private Short viento; //en metros por segundo
+    private Short precipitacion; //en milimetros por hora
 }

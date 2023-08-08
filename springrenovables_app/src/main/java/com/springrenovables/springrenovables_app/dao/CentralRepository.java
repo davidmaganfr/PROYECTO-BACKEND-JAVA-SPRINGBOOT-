@@ -33,10 +33,15 @@ public class CentralRepository {
                 .findFirst().orElse(null);
         return medicion;
     }
-
+    
     public void save(MedicionDTO dto) {
         medicionesRestRepository.save(dto.getMedicion());
-        radiacionRepository.save(dto.getLatitud(), dto.getLongitud(), dto.getAnny(), dto.getRadiacion());
+        radiacionRepository.save(dto.getMedicion(), dto.getRadiacion());
+    }
+
+    public void update(MedicionDTO dto) {
+        medicionesRestRepository.update(dto.getMedicion());
+        radiacionRepository.update(dto.getLatitud(), dto.getLongitud(), dto.getAnny(), dto.getRadiacion());
     }
 
     public void delete(MedicionDTO dto) {

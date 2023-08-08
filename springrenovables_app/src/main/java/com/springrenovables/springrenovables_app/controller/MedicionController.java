@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.springrenovables.springrenovables_app.dao.CentralRepository;
 import com.springrenovables.springrenovables_app.model.MedicionForm;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 
 @Controller
@@ -31,10 +32,17 @@ public class MedicionController {
         return "Mediciones/index";
     }
 
-    @GetMapping("/find/{id:\\d+}")
-    public String buscar(Model model, @PathVariable("id") long id) {
-        model.addAttribute("medicion", repo.findById(id));
+    @GetMapping("/find") //
+    public String buscar(Model model) {
+        model.addAttribute("medicion", new MedicionForm());
         return "Mediciones/find";
+    }
+
+    @PostMapping("/find") //
+    public String buscar(Model model, @Valid @ModelAttribute("medicion") MedicionForm med) {
+        var registro = repo.findById(med.getId());
+        model.addAttribute("registro", registro);
+        return "Mediciones/view";
     }
 
     @GetMapping("/insert")
@@ -63,20 +71,19 @@ public class MedicionController {
 
     @PostMapping("/update")
     public String editar(Model model, @Valid @ModelAttribute("medicion") MedicionForm med, BindingResult errors) {
-        repo.save(med.toMedicionDTO());
+        repo.update(med.toMedicionDTO());
         model.addAttribute("medicion", med);
         return "redirect:/mediciones/index";
     }
 
     @GetMapping("/delete/{id:\\d+}")
     public String delete(Model model, @PathVariable("id") long id) {
-        try{
+        try {
             repo.delete(repo.findById(id));
-        } catch(Exception ex){
+        } catch (Exception ex) {
             throw new ResponseStatusException(
-                HttpStatusCode.valueOf(HttpStatus.BAD_REQUEST.value()), "Mala solicitud", ex);
+                    HttpStatusCode.valueOf(HttpStatus.BAD_REQUEST.value()), "Mala solicitud", ex);
         }
         return "redirect:/mediciones/index";
     }
-
 }
