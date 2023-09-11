@@ -4,3 +4,7 @@ Proyecto elaborado con java y SpringBoot para una empresa de energías renovable
 Por otro lado, una aplicación web "springrenovables" que trabaja desde el navegador para acceder a la API REST para consultar, agregar, modificar o eliminar datos. Esta aplicación, además, hace uso de un archivo JSON del cual obtiene una medición extra para dar el mejor servicio, de manera que se usa un patrón DTO para reunir el conjunto de mediciones que proviene de la API REST y del archivo JSON.
 
 La aplicación web tiene un mecanismo de seguridad para que exclusivamente el administrador pueda realizar actualizaciones, borrados y agregación de datos, y el resto de usuarios simplemente pueda verlos.
+
+Algunas de las tecnologias utilizadas:
+- API REST: base de datos embebida H2, flujos reactivos con WebFlux, Spring Data Jpa, Lombok
+- Aplicacion web: solicitudes con WebClient, Thymeleaf, Spring Security, Spring Validation.
